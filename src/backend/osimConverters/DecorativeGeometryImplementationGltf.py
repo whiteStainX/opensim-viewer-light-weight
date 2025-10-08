@@ -2,7 +2,7 @@ import opensim as osim
 from pygltflib import *
 import numpy as np
 import vtk 
-from .openSimData2Gltf import *
+from openSimData2Gltf import *
 
 # Class to convert osim model file to a GLTF structure.
 # The typical workflow would be to instantiate this object, then traverse the model
