@@ -9,7 +9,7 @@ from pygltflib import *
 import numpy as np
 import json
 from pathlib import Path
-from .openSimData2Gltf import *
+from openSimData2Gltf import *
 
 # format is
 #

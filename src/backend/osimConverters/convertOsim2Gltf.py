@@ -6,8 +6,8 @@ import base64
 import math
 from pathlib import Path
 
-from .openSimData2Gltf import *
-from .DecorativeGeometryImplementationGltf import DecorativeGeometryImplementationGltf
+from openSimData2Gltf import *
+from DecorativeGeometryImplementationGltf import DecorativeGeometryImplementationGltf
 
 def convertOsim2Gltf(osimModelFilePath, geometrySearchPath, motionPaths=[]) :
 
