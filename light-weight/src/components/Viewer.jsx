@@ -1,24 +1,33 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Plane, useGLTF } from '@react-three/drei';
+import { OrbitControls, Stage, Grid } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
+import useStore from '../store/useStore';
 
-const Model = () => {
-  const { scene } = useGLTF('/arm26.gltf');
+const modelPaths = {
+  squat: '/arm26.gltf',
+  bench: '/arm26.gltf',
+  deadlift: '/arm26.gltf',
+};
+
+const Model = ({ url }) => {
+  const { scene } = useGLTF(url);
   return <primitive object={scene} />;
 };
 
 const Viewer = () => {
+  const { selectedLift } = useStore();
+  const modelPath = modelPaths[selectedLift];
+
   return (
-    <div className="w-full h-full bg-white rounded-lg shadow-md">
+    <div className="w-full h-full bg-gray-800 rounded-lg shadow-md">
       <Canvas camera={{ position: [0, 2, 5] }}>
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <Model />
+          <Stage environment="city" intensity={0.6}>
+            <Model url={modelPath} />
+          </Stage>
         </Suspense>
-        <Plane args={[10, 10]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-          <meshStandardMaterial color="#808080" />
-        </Plane>
+        <Grid renderOrder={-1} position={[0, -0.5, 0]} infiniteGrid cellSize={0.6} cellThickness={0.6} sectionSize={3.3} sectionThickness={1.5} sectionColor={[0.5, 0.5, 10]} fadeDistance={30} />
         <OrbitControls />
       </Canvas>
     </div>
