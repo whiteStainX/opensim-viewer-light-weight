@@ -1,9 +1,41 @@
 import React from 'react';
 import useStore from '../store/useStore';
-import { FaArrowLeft, FaBars } from 'react-icons/fa';
+import { FaArrowLeft, FaBars, FaPlay, FaPause } from 'react-icons/fa';
 
 const Sidebar = () => {
-  const { selectedLift, setSelectedLift, isSidebarOpen, toggleSidebar } = useStore();
+  const {
+    selectedLift,
+    setSelectedLift,
+    isSidebarOpen,
+    toggleSidebar,
+    animations,
+    currentAnimation,
+    setCurrentAnimation,
+    isPlaying,
+    setIsPlaying,
+    animationSpeed,
+    setAnimationSpeed,
+    currentFrame,
+    setCurrentFrame,
+    numFrames,
+  } = useStore();
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleSliderChange = (e) => {
+    setCurrentFrame(Number(e.target.value));
+  };
+
+  const handleSpeedChange = (e) => {
+    setAnimationSpeed(Number(e.target.value));
+  };
+
+  const handleAnimationChange = (e) => {
+    setCurrentAnimation(e.target.value);
+    setCurrentFrame(0);
+  };
 
   return (
     <>
@@ -53,6 +85,40 @@ const Sidebar = () => {
                 <option value="squat">Squat</option>
                 <option value="bench">Bench Press</option>
                 <option value="deadlift">Deadlift</option>
+                <option value="gait">Gait</option>
+              </select>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button onClick={handlePlayPause} className="focus:outline-none">
+                {isPlaying ? <FaPause /> : <FaPlay />}
+              </button>
+              <input
+                type="range"
+                min="0"
+                max={numFrames - 1}
+                value={currentFrame}
+                onChange={handleSliderChange}
+                className="w-full"
+              />
+              <span>{currentFrame}</span>
+            </div>
+            <div>
+              <label htmlFor="speed-select" className="block text-sm font-medium text-gray-400">Speed</label>
+              <select id="speed-select" value={animationSpeed} onChange={handleSpeedChange} className="mt-1 block w-full pl-3 pr-10 py-2 text-base bg-gray-700 border-gray-600 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option value="0.25">0.25x</option>
+                <option value="0.5">0.5x</option>
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="animation-select" className="block text-sm font-medium text-gray-400">Animation</label>
+              <select id="animation-select" value={currentAnimation || ''} onChange={handleAnimationChange} className="mt-1 block w-full pl-3 pr-10 py-2 text-base bg-gray-700 border-gray-600 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                {animations.map((anim) => (
+                  <option key={anim.name} value={anim.name}>
+                    {anim.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

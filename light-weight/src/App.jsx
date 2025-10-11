@@ -1,6 +1,5 @@
 import Sidebar from './components/Sidebar';
 import Viewer from './components/Viewer';
-import AnimationControls from './components/AnimationControls';
 import useStore from './store/useStore';
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
         <div className="flex-grow">
           <Viewer />
         </div>
-        <AnimationControls />
       </main>
     </div>
   );

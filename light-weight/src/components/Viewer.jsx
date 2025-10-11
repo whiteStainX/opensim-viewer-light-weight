@@ -7,6 +7,7 @@ const modelPaths = {
   squat: '/arm26_elbow_flex.gltf',
   bench: '/arm26.gltf',
   deadlift: '/arm26.gltf',
+  gait: '/gait10dof18musc.gltf',
 };
 
 const Model = ({ url }) => {
