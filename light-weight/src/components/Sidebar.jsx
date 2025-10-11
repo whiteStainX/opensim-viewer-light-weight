@@ -55,11 +55,6 @@ const Sidebar = () => {
                 <option value="deadlift">Deadlift</option>
               </select>
             </div>
-            <button className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Play</button>
-            <div>
-              <label htmlFor="scrubber" className="block text-sm font-medium text-gray-400">Animation</label>
-              <input type="range" id="scrubber" min="0" max="100" className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer" />
-            </div>
           </div>
         )}
       </aside>

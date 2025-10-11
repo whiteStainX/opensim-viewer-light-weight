@@ -4,7 +4,7 @@ import { OrbitControls, Stage, Grid, useGLTF, useAnimations } from '@react-three
 import useStore from '../store/useStore';
 
 const modelPaths = {
-  squat: '/arm26.gltf',
+  squat: '/arm26_elbow_flex.gltf',
   bench: '/arm26.gltf',
   deadlift: '/arm26.gltf',
 };
@@ -59,7 +59,7 @@ const Viewer = () => {
     <div className="w-full h-full bg-gray-800 rounded-lg shadow-md">
       <Canvas camera={{ position: [0, 2, 5] }}>
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.6}>
+          <Stage environment="city" intensity={0.6} adjustCamera={false}>
             <Model url={modelPath} />
           </Stage>
         </Suspense>

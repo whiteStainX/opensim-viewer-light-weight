@@ -34,7 +34,7 @@ const AnimationControls = () => {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-gray-800 bg-opacity-50 p-4 text-white">
+    <div className="relative bottom-0 left-0 right-0 bg-gray-800 bg-opacity-50 p-4 text-white z-10">
       <div className="flex items-center justify-center space-x-4">
         <button onClick={handlePlayPause} className="focus:outline-none">
           {isPlaying ? <FaPause /> : <FaPlay />}
