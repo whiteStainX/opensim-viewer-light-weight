@@ -80,7 +80,28 @@ The proposed stack is modern, lightweight, and focuses on a great developer expe
     *   If client-side processing is not sufficient, develop a local FastAPI server to handle tasks like on-the-fly model conversion or data analysis.
     *   This would allow users to upload their own `.osim` or `.trc` files for analysis.
 
-## 4. Next Steps
+## 4. Using OpenSim Creator to Generate Animated Models
+
+To create the animated models needed for this application, potentially the **OpenSim Creator** software will help. This will allow you to generate the necessary motion files (`.trc`) for your OpenSim models (`.osim`).
+
+Here is the general workflow:
+
+1.  **Download and Install OpenSim Creator:**
+    *   Get the latest version from the official website: [opensimcreator.com](https://opensimcreator.com/)
+2.  **Load Your Model:**
+    *   Open OpenSim Creator and load your `.osim` model file.
+3.  **Generate Motion Data:**
+    *   Use the simulation and analysis tools within OpenSim Creator to generate motion data for your model.
+    *   Export this motion data as a `.trc` file.
+4.  **Convert to Animated GLTF:**
+    *   Use the `convertTrc2Gltf.py` script located in the `src/backend/osimConverters` directory of this repository.
+    *   This script will take your `.osim` model file and the newly generated `.trc` motion file as input and produce an animated `.gltf` file.
+5.  **Add to the Application:**
+    *   Place the generated `.gltf` file in the `light-weight/public/` directory.
+    *   Update the `modelPaths` object in the `light-weight/src/components/Viewer.jsx` file to include a new entry for your model.
+    *   Add a corresponding option to the lift selection UI in `light-weight/src/components/Sidebar.jsx`.
+
+## 5. Next Steps
 
 *   **Confirm Plan:** Review and confirm this refined plan.
 *   **Start Phase 1:** Begin with the project setup and core UI development.
